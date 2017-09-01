@@ -24,4 +24,21 @@ public class PencilTest {
         System.out.println("Write Test passed, appended text length is: \n" + expected);
         System.out.println("Full text is: \n" + text);
     }
+
+    //Test counts how many letters were written(this method follows the convention that lowercase letters have a value of one
+    //and uppercase letters have a value of two.
+    @Test
+    public void countLettersTest(){
+        String textBefore = "Fly me ";
+        String textAfter = " TO THE moon";
+        text.append(textBefore);
+
+        Pencil pencil = new Pencil();
+        int countLetters = pencil.countLetters(textAfter);
+
+        assertEquals("Expected and actual values don't match", countLetters, 14);
+        System.out.println("Count Letters Test passed, number of letters written is " +
+                "(lowercase letter value is one, uppercase letter value is two: \n" + countLetters);
+
+    }
 }
