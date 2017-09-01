@@ -109,4 +109,27 @@ public class PencilTest {
         System.out.println("Full text is: \n" + text);
         System.out.println("New sharpening limit is: \n" + sharpeningLimit);
     }
+
+    //Test checks that sharpening limit decreases twice after sharpening the pencil twice
+    @Test
+    public void sharpenTwoTimesTest(){
+        String textBefore = "Fly me ";
+        String textAfter = "to the moon";
+        String textAfter2 = "let me play";
+        text.append(textBefore);
+
+        Pencil pencil = new Pencil(9, 3);
+        pencil.writeText(text, textAfter).toString();
+        pencil.sharpenPencil();
+        int lengthFirstSharpen = pencil.getPointDurability();
+
+        pencil.writeText(text, textAfter2).toString();
+        pencil.sharpenPencil();
+        int lengthSecondSharpen = pencil.getPointDurability();
+        int sharpeningLimit = pencil.getSharpeningLimit();
+
+        assertEquals("Expected and actual values don't match", lengthFirstSharpen, lengthSecondSharpen);
+        System.out.println("Restore Point Durability Test passed, point durability is: \n" + lengthSecondSharpen);
+        System.out.println("Sharpening limit is: \n" + sharpeningLimit);
+    }
 }
