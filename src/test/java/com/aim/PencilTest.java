@@ -79,17 +79,34 @@ public class PencilTest {
     //Test checks that the sharpenPencil method restores point durability to its initial value
     @Test
     public void sharpenPencilTest(){
-        String textBefore = "Fly me ";
-        String textAfter = "to the moon";
-        text.append(textBefore);
+        String textBeforeWriting = "Fly me ";
+        String textToBeWritten = "to the moon";
+        text.append(textBeforeWriting);
 
         Pencil pencil = new Pencil(9, 1);
-        pencil.writeText(text, textAfter).toString();
+        pencil.writeText(text, textToBeWritten).toString();
         pencil.sharpenPencil();
         int pointDurability = pencil.getPointDurability();
 
         assertEquals("Expected and actual values don't match", pointDurability, 9);
         System.out.println("Full text is: \n" + text);
         System.out.println("Restore Point Durability Test passed, point durability is: \n" + pointDurability);
+    }
+
+    //Test checks that the sharpening limit decreases after sharpening the pencil
+    @Test
+    public void sharpeningLimitTest(){
+        String textBeforeWriting = "Fly me ";
+        String textToBeWritten = "to the moon";
+        text.append(textBeforeWriting);
+
+        Pencil pencil = new Pencil(9, 2);
+        pencil.writeText(text, textToBeWritten).toString();
+        pencil.sharpenPencil();
+        int sharpeningLimit = pencil.getSharpeningLimit();
+
+        assertEquals("Expected and actual values don't match", sharpeningLimit, 1);
+        System.out.println("Full text is: \n" + text);
+        System.out.println("New sharpening limit is: \n" + sharpeningLimit);
     }
 }

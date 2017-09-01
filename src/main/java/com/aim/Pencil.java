@@ -6,7 +6,6 @@ public class Pencil {
     private int initialPointDurability;
 
     public Pencil() {
-
         this.pointDurability = 30;
     }
 
@@ -70,8 +69,16 @@ public class Pencil {
     }
 
     //The sharpenPencil method restores the initial point durability of the pencil
+    //if the sharpening limit is higher than 0.
+    //Else if sharpening limit is lower or equal to 0 point durability cannot be restored.
     public void sharpenPencil() {
-        this.pointDurability = initialPointDurability;
+        if (sharpeningLimit <= 0) {
+            this.sharpeningLimit = 0;
+        }
+        if (sharpeningLimit > 0) {
+            this.pointDurability = initialPointDurability;
+            this.sharpeningLimit -= 1;
+        }
     }
 
     public int getPointDurability() {
