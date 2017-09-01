@@ -39,16 +39,21 @@ public class Pencil {
 
     //The writeText method appends a string to a StringBuilder.
     //The method will append letters if point durability is higher than 0
+    //and will append whitespace if point durability is lower or equal to 0.
     public StringBuilder writeText(StringBuilder text, String textToBeWritten) {
         int pointDurability = getPointDurability();
         for (int i = 0; i < textToBeWritten.length(); i++) {
-            if (Character.isLowerCase(textToBeWritten.charAt(i))) {
-                pointDurability -= 1;
+            if (pointDurability > 0) {
+                if (Character.isLowerCase(textToBeWritten.charAt(i))) {
+                    pointDurability -= 1;
 
-            } else if (Character.isUpperCase(textToBeWritten.charAt(i))) {
-                pointDurability -= 2;
+                } else if (Character.isUpperCase(textToBeWritten.charAt(i))) {
+                    pointDurability -= 2;
+                }
+                text.append(textToBeWritten.charAt(i));
+            } else if (pointDurability <= 0) {
+                text.append(" ");
             }
-            text.append(textToBeWritten.charAt(i));
         }
         this.pointDurability = pointDurability;
         return text;

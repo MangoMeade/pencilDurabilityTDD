@@ -38,13 +38,13 @@ public class PencilTest {
 
         assertEquals("Expected and actual values don't match", countLetters, 14);
         System.out.println("Count Letters Test passed, number of letters written is " +
-                "(lowercase letter value is one, uppercase letter value is two: \n" + countLetters);
+                "(assuming lowercase letter value is one, uppercase letter value is two: \n" + countLetters);
 
     }
 
-    //Test writes test and displays the point durability after writing
+    //Test writes text and displays the point durability after writing
     @Test
-    public void writeAndChangePointDurabilityTest(){
+    public void writeTextAndChangePointDurabilityTest(){
         String textBeforeWriting = "She sells sea shells";
         String textToBeWritten = " down BY THE sea";
         text.append(textBeforeWriting);
@@ -54,6 +54,24 @@ public class PencilTest {
         int pointDurability = pencil.getPointDurability();
 
         assertEquals("Expected and actual values don't match", pointDurability, 13);
+        System.out.println("Change Point Durability Test passed, pencil wrote: \n" + text.substring(textBeforeWriting.length()));
+        System.out.println("Point Durability after writing is: \n" + pointDurability);
+    }
+
+    //Test writes text longer than pencil point durability.
+    //Because point durability gets to zero before all letters are written,
+    //the last characters are not written as letters but as whitespace.
+    @Test
+    public void writeTextAndExceedPointDurabilityTest(){
+        String textBeforeWriting = "She sells sea shells";
+        String textToBeWritten = " down BY THE sea";
+        text.append(textBeforeWriting);
+
+        Pencil pencil = new Pencil(15);
+        String writtenText = pencil.writeText(text, textToBeWritten).toString();
+        int pointDurability = pencil.getPointDurability();
+
+        assertEquals("Expected and actual values don't match", writtenText, "She sells sea shells down BY THE s  ");
         System.out.println("Change Point Durability Test passed, pencil wrote: \n" + text.substring(textBeforeWriting.length()));
         System.out.println("Point Durability after writing is: \n" + pointDurability);
     }
