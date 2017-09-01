@@ -2,6 +2,8 @@ package com.aim;
 
 public class Pencil {
     private int pointDurability;
+    private int sharpeningLimit;
+    private int initialPointDurability;
 
     public Pencil() {
 
@@ -10,6 +12,14 @@ public class Pencil {
 
     public Pencil(int pointDurability) {
         this.pointDurability = pointDurability;
+        this.initialPointDurability = pointDurability;
+        this.sharpeningLimit = 1;
+    }
+
+    public Pencil(int pointDurability, int sharpeningLimit) {
+        this.pointDurability = pointDurability;
+        this.initialPointDurability = pointDurability;
+        this.sharpeningLimit = sharpeningLimit;
     }
 
     //The testWriteText method counts how many characters are appended to a StringBuilder.
@@ -59,7 +69,16 @@ public class Pencil {
         return text;
     }
 
+    //The sharpenPencil method restores the initial point durability of the pencil
+    public void sharpenPencil() {
+        this.pointDurability = initialPointDurability;
+    }
+
     public int getPointDurability() {
         return pointDurability;
+    }
+
+    public int getSharpeningLimit() {
+        return sharpeningLimit;
     }
 }
