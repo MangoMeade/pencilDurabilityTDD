@@ -113,17 +113,17 @@ public class PencilTest {
     //Test checks that sharpening limit decreases twice after sharpening the pencil twice
     @Test
     public void sharpenTwoTimesTest(){
-        String textBefore = "Fly me ";
-        String textAfter = "to the moon";
-        String textAfter2 = "let me play";
-        text.append(textBefore);
+        String textBeforeWriting = "Fly me ";
+        String textToBeWritten = "to the moon";
+        String textToBeWritten2 = "let me play";
+        text.append(textBeforeWriting);
 
         Pencil pencil = new Pencil(9, 3);
-        pencil.writeText(text, textAfter).toString();
+        pencil.writeText(text, textToBeWritten).toString();
         pencil.sharpenPencil();
         int lengthFirstSharpen = pencil.getPointDurability();
 
-        pencil.writeText(text, textAfter2).toString();
+        pencil.writeText(text, textToBeWritten2).toString();
         pencil.sharpenPencil();
         int lengthSecondSharpen = pencil.getPointDurability();
         int sharpeningLimit = pencil.getSharpeningLimit();
@@ -131,5 +131,34 @@ public class PencilTest {
         assertEquals("Expected and actual values don't match", lengthFirstSharpen, lengthSecondSharpen);
         System.out.println("Restore Point Durability Test passed, point durability is: \n" + lengthSecondSharpen);
         System.out.println("Sharpening limit is: \n" + sharpeningLimit);
+    }
+
+    //Test checks that sharpening a pencil with a sharpening limit of zero does not restore point durability
+    @Test
+    public void sharpenTwoTimesButPointDurabilityIsNotRestoredTest(){
+        String textBeforeWriting = "Fly me ";
+        String textToBeWritten = "to the moon";
+        String textToBeWritten2 = " let me play among ";
+        String textToBeWritten3 = " the stars";
+        text.append(textBeforeWriting);
+
+        Pencil pencil = new Pencil(9, 1);
+        pencil.writeText(text, textToBeWritten).toString();
+
+        pencil.sharpenPencil();
+        int lengthFirstSharpen = pencil.getPointDurability();
+        pencil.writeText(text, textToBeWritten2).toString();
+
+        pencil.sharpenPencil();
+        int lengthSecondSharpen = pencil.getPointDurability();
+        pencil.writeText(text, textToBeWritten3).toString();
+
+        int sharpeningLimit = pencil.getSharpeningLimit();
+
+        assertEquals("Expected and actual values don't match", lengthSecondSharpen, 0);
+        System.out.println("Restore Point Durability Test passed, point durability after sharpening once is: \n" + lengthFirstSharpen +
+                "\nand point durability after sharpening twice is: \n" + lengthSecondSharpen);
+        System.out.println("Sharpening limit is: \n" + sharpeningLimit);
+        System.out.println("Full text is: \n" + text);
     }
 }
