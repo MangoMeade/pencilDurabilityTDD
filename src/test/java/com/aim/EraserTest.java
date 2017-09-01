@@ -17,6 +17,7 @@ public class EraserTest {
         Pencil pencil = new Pencil(15);
         pencil.writeText(text, textToBeWritten).toString();
     }
+
     //Test checks that the eraseText method erases the desired word.
     @Test
     public void eraseTest(){
@@ -24,6 +25,18 @@ public class EraserTest {
         String editedText = eraser.eraseText(text, "Sea").toString();
 
         assertEquals("Expected and actual values don't match", editedText, "She sells     shells sells");
+        System.out.println("Edited text is: \n" + text);
+    }
+
+    //Test checks that eraserDurability decreases everytime a letter is erased.
+    @Test
+    public void eraserDurabilityTest(){
+        Eraser eraser = new Eraser(20);
+        eraser.eraseText(text, "shells").toString();
+        int eraserDurability = eraser.getEraserDurability();
+
+        assertEquals("Expected and actual values don't match", eraserDurability, 14);
+        System.out.println("Eraser durability is: \n" + eraserDurability);
         System.out.println("Edited text is: \n" + text);
     }
 }
