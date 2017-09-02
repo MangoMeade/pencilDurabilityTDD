@@ -169,10 +169,26 @@ public class PencilTest {
         text.append(textToBeEdited);
 
         Pencil pencil = new Pencil(10);
+        pencil.editText(text, "   ", "apple");
+        int pointDurability = pencil.getPointDurability();
+
+        assertEquals("Expected and actual values don't match", text.toString(), "An apple a day keeps the doctor away");
+        System.out.println("Edit Text Test passed, the updated text is: \n" + text.toString());
+        System.out.println("Point Durability is: \n" + pointDurability);
+    }
+
+    //Test checks that the editText method writes a letter if the character at the index to be edited is whitespace
+    //but writes a '@' if the character at the index to be edited is a letter
+    @Test
+    public void editTextOverlapTest(){
+        String textBefore = "An       a day keeps the doctor away";
+        text.append(textBefore);
+
+        Pencil pencil = new Pencil(10);
         pencil.editText(text, "   ", "artichoke");
         int pointDurability = pencil.getPointDurability();
 
-        assertEquals("Expected and actual values don't match", text.toString(), "An artichokeay keeps the doctor away");
+        assertEquals("Expected and actual values don't match", text.toString(), "An artich@k@ay keeps the doctor away");
         System.out.println("Edit Text Test passed, the updated text is: \n" + text.toString());
         System.out.println("Point Durability is: \n" + pointDurability);
     }

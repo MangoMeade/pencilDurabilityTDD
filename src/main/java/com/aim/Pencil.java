@@ -81,6 +81,9 @@ public class Pencil {
         }
     }
 
+    //The editText method edits a StringBuilder starting at the specified index.
+    //If the new character collides with existing text the method will write a '@'
+    //else if there is no existing text the method will write the actual character added.
     public StringBuilder editText(StringBuilder text, String substring, String edit) {
         int pointDurability = getPointDurability();
         int startEditsHere = text.indexOf(substring) + 1;
@@ -91,8 +94,11 @@ public class Pencil {
             if (Character.isUpperCase(edit.charAt(i))) {
                 pointDurability -= 2;
             }
-
-            text.replace(startEditsHere, startEditsHere + 1, edit.charAt(i) + "");
+            if (text.charAt(startEditsHere) == ' ') {
+                text.replace(startEditsHere, startEditsHere + 1, edit.charAt(i) + "");
+            } else if (text.charAt(startEditsHere) != ' ') {
+                text.replace(startEditsHere, startEditsHere + 1, "@");
+            }
             startEditsHere += 1;
 
             if (pointDurability == 0) {
