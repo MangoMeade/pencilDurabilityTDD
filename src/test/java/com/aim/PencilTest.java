@@ -181,8 +181,8 @@ public class PencilTest {
     //but writes a '@' if the character at the index to be edited is a letter
     @Test
     public void editTextOverlapTest(){
-        String textBefore = "An       a day keeps the doctor away";
-        text.append(textBefore);
+        String textToBeEdited = "An       a day keeps the doctor away";
+        text.append(textToBeEdited);
 
         Pencil pencil = new Pencil(10);
         pencil.editText(text, "   ", "artichoke");
