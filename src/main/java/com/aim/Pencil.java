@@ -81,6 +81,28 @@ public class Pencil {
         }
     }
 
+    public StringBuilder editText(StringBuilder text, String substring, String edit) {
+        int pointDurability = getPointDurability();
+        int startEditsHere = text.indexOf(substring) + 1;
+        for (int i = 0; i < edit.length(); i++) {
+            if (Character.isLowerCase(edit.charAt(i))) {
+                pointDurability -= 1;
+            }
+            if (Character.isUpperCase(edit.charAt(i))) {
+                pointDurability -= 2;
+            }
+
+            text.replace(startEditsHere, startEditsHere + 1, edit.charAt(i) + "");
+            startEditsHere += 1;
+
+            if (pointDurability == 0) {
+                break;
+            }
+        }
+        this.pointDurability = pointDurability;
+        return text;
+    }
+
     public int getPointDurability() {
         return pointDurability;
     }

@@ -161,4 +161,19 @@ public class PencilTest {
         System.out.println("Sharpening limit is: \n" + sharpeningLimit);
         System.out.println("Full text is: \n" + text);
     }
+
+    //Test checks that the editText method writes a string starting at the specified index
+    @Test
+    public void editTextTest(){
+        String textToBeEdited = "An       a day keeps the doctor away";
+        text.append(textToBeEdited);
+
+        Pencil pencil = new Pencil(10);
+        pencil.editText(text, "   ", "artichoke");
+        int pointDurability = pencil.getPointDurability();
+
+        assertEquals("Expected and actual values don't match", text.toString(), "An artichokeay keeps the doctor away");
+        System.out.println("Edit Text Test passed, the updated text is: \n" + text.toString());
+        System.out.println("Point Durability is: \n" + pointDurability);
+    }
 }
