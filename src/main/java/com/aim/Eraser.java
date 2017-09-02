@@ -3,9 +3,10 @@ package com.aim;
 public class Eraser {
     private int eraserDurability;
 
-    public Eraser(){
+    public Eraser() {
         this.eraserDurability = 10;
     }
+
     public Eraser(int eraserDurability) {
         this.eraserDurability = eraserDurability;
     }
@@ -30,7 +31,7 @@ public class Eraser {
 
         text.replace(text.lastIndexOf(textToBeErased), text.lastIndexOf(textToBeErased) + textToBeErased.length(), erasedText.toString());
         this.eraserDurability -= textToBeErased.length();
-        if (this.eraserDurability < 0){
+        if (this.eraserDurability < 0) {
             this.eraserDurability = 0;
         }
         return text;
