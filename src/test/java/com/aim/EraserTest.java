@@ -40,8 +40,19 @@ public class EraserTest {
         System.out.println("Edited text is: \n" + text);
     }
 
+    //Test checks that eraseText does not erase a letter if eraserDurability is zero.
+    @Test
+    public void eraserDoesNotDeleteLetterIfDurabilityIsZeroTest() {
+        Eraser eraser = new Eraser(5);
+        String editedText = eraser.eraseText(text, "shells").toString();
+        int eraserDurability = eraser.getEraserDurability();
+
+        assertEquals("Expected and actual values don't match", editedText, "She sells Sea s      sells");
+        System.out.println("Eraser durability is: \n" + eraserDurability);
+        System.out.println("Edited text is: \n" + text);
+    }
+
     //Test checks if the eraseText method erases the desired word twice.
-    //Test also checks that eraseText does not erase a letter if eraserDurability is zero.
     @Test
     public void eraseTwoTimesTest() {
         Eraser eraser = new Eraser(8);
@@ -50,5 +61,17 @@ public class EraserTest {
 
         assertEquals("Expected and actual values don't match", editedText, "S   sells Sea        sells");
         System.out.println("Edited text is: \n" + text);
+    }
+
+    //Test check that eraseText doesn't reduce eraser durability if eraser erases whitespace
+    @Test
+    public void eraseWhitespaceTest(){
+        Eraser eraser = new Eraser(4);
+        eraser.eraseText(text, "e se").toString();
+        int eraserDurability = eraser.getEraserDurability();
+
+        assertEquals("Expected and actual values don't match", eraserDurability, 1);
+        System.out.println("Edited text is: \n" + text);
+        System.out.println("Eraser durability is: \n" + eraserDurability);
     }
 }
