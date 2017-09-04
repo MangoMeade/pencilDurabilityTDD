@@ -1,1 +1,1 @@
-# pencilDurabilityTDD
+# Pencil Durability Kata
