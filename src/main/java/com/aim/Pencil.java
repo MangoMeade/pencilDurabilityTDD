@@ -31,7 +31,7 @@ public class Pencil {
     }
 
     //The countLetters method counts how many letters are in the string to be appended.
-    //This method was built for testing purposes. and as a base for the writeText method.
+    //This method was built for testing purposes and as a starting point for the writeText method.
     //It will not be used in the actual application.
     public int countLetters(String textToBeWritten) {
         int counter = 0;

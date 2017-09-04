@@ -48,11 +48,12 @@ public class EraserTest {
         int eraserDurability = eraser.getEraserDurability();
 
         assertEquals("Expected and actual values don't match", editedText, "She sells Sea s      sells");
+        System.out.println("Word to be deleted: shells");
         System.out.println("Eraser durability is: \n" + eraserDurability);
         System.out.println("Edited text is: \n" + text);
     }
 
-    //Test checks if the eraseText method erases the desired word twice.
+    //Test checks if the eraseText method erases the desired words in function of eraser durability limit.
     @Test
     public void eraseTwoTimesTest() {
         Eraser eraser = new Eraser(8);
@@ -63,7 +64,7 @@ public class EraserTest {
         System.out.println("Edited text is: \n" + text);
     }
 
-    //Test check that eraseText doesn't reduce eraser durability if eraser erases whitespace
+    // Test checks that eraseText does not effect erase durability for "erasing" whitespace.
     @Test
     public void eraseWhitespaceTest(){
         Eraser eraser = new Eraser(4);
